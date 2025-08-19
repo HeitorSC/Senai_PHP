@@ -32,6 +32,69 @@ SELECT A.matricula,
 FROM escola.alunos as A
 WHERE matricula = 1 or matricula = 2;
 
+-- 
+CREATE DATABASE redesocial;
+USE redesocial;
+
+CREATE TABLE IF NOT EXISTS usuarios(
+idusuario INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(100) NOT NULL,
+genero ENUM('M', 'F', 'Outro'),
+interesses SET('Música', 'Esporto', 'Tecnologia', 'Viagens'),
+cpf CHAR(11) UNIQUE,
+data_nascimento DATE,
+biografia TEXT,
+foto_perfil BLOB,
+online BIT(1)
+);
+
+drop TABLE usuarios;
+
+-- Inserir registros na tabela usuarios
+INSERT INTO usuarios(
+    nome, 
+    genero, 
+    interesses, 
+    cpf, 
+    data_nascimento, 
+    biografia, 
+    foto_perfil, 
+    online)
+VALUES(
+    'Ana Souza',
+    'F',
+    'Música, Via',
+    '12345678901',
+    '2000-08-19',
+    'Estudante apaixonada por viagens.',
+    null,    
+    ''
+);
+
+SELECT * FROM usuarios;
+
+CREATE TABLE postagens(
+idpost INT AUTO_INCREMENT PRIMARY KEY,
+conteudo LONGTEXT,
+datapost DATETIME,
+likes INT DEFAULT 0,
+views INT
+);
+
+-- Cria registro de postagem
+
+INSERT INTO postagens(
+    conteudo,
+    datapost,
+    likes,
+    views
+)
+VALUES(
+    'Primeiro post da Ana: Bom dia!',
+    NOW(),
+    10,
+    100
+);
 
 
 
